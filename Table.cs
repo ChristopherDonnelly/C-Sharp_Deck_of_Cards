@@ -20,13 +20,13 @@ namespace Deck_of_Cards
             int playerCount = 0;
             foreach(Player player in this.players){
                 playerCount++;
-                Console.WriteLine("Player #{0}: {1}", playerCount, player.name);
+                Console.WriteLine($"Player #{playerCount}: {player.name}");
             }
         }
 
         public void addDealerToTable(Player dealer){
             this.players.Add(dealer);
-            Console.WriteLine("Dealer: {0}", dealer.name);
+            Console.WriteLine($"Dealer: {dealer.name}");
         }
 
         public void clearBoard(){

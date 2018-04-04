@@ -26,7 +26,11 @@ namespace Deck_of_Cards
         }
 
         public string showCard() {
-            return "Card - " + this.getCardValue() + " of " + this.suit.ToString();
+            return this.ToString();
+        }
+
+        public override string ToString(){
+            return $"{this.getCardValue()} of {this.getCardSuit()}s";
         }
 
     }

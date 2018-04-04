@@ -26,25 +26,29 @@ namespace Deck_of_Cards
             foreach(Card card in this.hand){
                 cardVal = (card.getCardWeight());
 
-                Console.WriteLine("Card Value: "+cardVal);
+                Console.WriteLine($"Card Value: {cardVal} ({card})");
                 if(cardVal == 11) {
                     aces += 1;
                 }
                 score += cardVal;
             }
 
-            Console.WriteLine("Score: "+score);
-            Console.WriteLine("Aces: "+aces);
+            Console.WriteLine($"Score: {score}");
+            Console.WriteLine($"Aces: {aces}");
 
             while(score > 21 && aces > 0){
                 score -= 10;
                 aces -=1;
             }
 
-            Console.WriteLine("Score: "+score);
+            Console.WriteLine($"Score: {score}");
             Console.WriteLine("*********************");
 
             return score;
+        }
+
+        public override string ToString(){
+            return $"Info for {this.name}\n********************";
         }
     }
 }

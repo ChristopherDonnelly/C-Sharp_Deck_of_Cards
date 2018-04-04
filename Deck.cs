@@ -50,14 +50,13 @@ namespace Deck_of_Cards
         public Card deal_card(){
             Card card = this.cards[0];
             this.cards.RemoveAt(0);
-            Console.WriteLine("Drew card: {0} of {1}s", card.getCardValue(), card.getCardSuit());
+            Console.WriteLine($"Drew card: {card}s");
             return card;
         }
 
         public void display() {
             foreach(Card card in this.cards){
-                // $('#player1').append(`<div class="card"><img src="images/${this.cards[card].getCardImageId()}.png" alt="${this.cards[card].getCardValue()} of ${this.cards[card].getCardSuit()}s"></div>`);
-                Console.WriteLine("Card - {0} of {1}", card.getCardValue(), card.getCardSuit());
+                Console.WriteLine($"Card - {card}s");
             }
         }
     }

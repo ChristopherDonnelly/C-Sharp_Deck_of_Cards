@@ -65,14 +65,14 @@ namespace Deck_of_Cards
             
             card.showCard();
             
-            Console.WriteLine("Get Score for: {0}", name);
+            Console.WriteLine($"Get Score for: {name}");
             int score = player.getScore();
             
-            Console.WriteLine("Player #" + playerNum + ": " + name);
+            Console.WriteLine($"Player # {playerNum}: {name}");
             Console.WriteLine(score);
 
             if(score > 21){
-                Console.WriteLine(player.name + " Busted");
+                Console.WriteLine($"{player.name} Busted");
                 this.nextTurn();
             }else if(score == 21){
                 this.nextTurn();
@@ -82,11 +82,11 @@ namespace Deck_of_Cards
         public void startRound() {
             List<Player> players = this.table.players;
             Player dealer = players[players.Count-1];
-            Console.WriteLine("Get Score for: {0}", dealer.name);
+            Console.WriteLine($"Get Score for: {dealer.name}");
             int score = dealer.getScore();
 
             if(score == 21){
-                Console.WriteLine("{0} Blackjack!", dealer.name);
+                Console.WriteLine($"{dealer.name} Blackjack!");
                 this.endRound(score);
             }else{
                 this.nextPlay();
@@ -96,17 +96,17 @@ namespace Deck_of_Cards
         public void nextPlay(){
             Player player = this.table.players[this.turn];
 
-            Console.WriteLine("Get Score for: {0}", player.name);
+            Console.WriteLine($"Get Score for: {player.name}");
             int score = player.getScore();
 
             if(this.turn == this.table.players.Count-1){
                 this.checkDealer();
             }else{
                 if(score == 21){
-                    Console.WriteLine("Player {0} Blackjack!", player.name);
+                    Console.WriteLine($"Player {player.name} Blackjack!");
                     this.nextTurn();
                 }else{
-                    Console.WriteLine("Ask Player {0} to 'Hit' or 'Stand'!", player.name);
+                    Console.WriteLine($"Ask Player {player.name} to 'Hit' or 'Stand'!");
                 }
             }
         }
@@ -120,14 +120,14 @@ namespace Deck_of_Cards
             List<Player> players = this.table.players;
             Player dealer = players[players.Count-1];
             
-            Console.WriteLine("Get Score for: {0}", dealer.name);
+            Console.WriteLine($"Get Score for: {dealer.name}");
             int dealerScore = dealer.getScore();
             int playerNum = players.Count;
             string name = dealer.name;
 
             Console.WriteLine("Dealer's hand: ");
             for(int i=0; i<dealer.hand.Count; i++){
-                Console.WriteLine(dealer.hand[i].showCard());
+                Console.WriteLine(dealer.hand[i]);
             }
 
             if(dealerScore >= 17){
@@ -137,14 +137,14 @@ namespace Deck_of_Cards
                     Card card = this.deck.deal_card();
 
                     dealer.hand.Add(card);
-                    Console.WriteLine("{0} Received: {1}", dealer.name, card.showCard());
+                    Console.WriteLine($"{dealer.name} Received: {card}");
 
-                    Console.WriteLine("Get Score for: {0}", dealer.name);
+                    Console.WriteLine($"Get Score for: {dealer.name}");
                     dealerScore = dealer.getScore();
                 }
 
                 if(dealerScore > 21){
-                    Console.WriteLine("{0} Busted", dealer.name);
+                    Console.WriteLine($"{dealer.name} Busted!");
                 }
                 this.endRound(dealerScore);
             }
@@ -152,21 +152,20 @@ namespace Deck_of_Cards
 
         public void endRound(int dealerScore) {
             List<Player> players = this.table.players;
-            Console.WriteLine("Dealers Score: " + dealerScore);
+            Console.WriteLine($"Dealers Score: {dealerScore}");
             foreach(Player player in players){
-                string playerName = player.name;
 
-                Console.WriteLine("Get Score for: {0}", player.name);
+                Console.WriteLine($"Get Score for: {player.name}");
                 int score = player.getScore();
 
-                Console.WriteLine("Checking Player: "+playerName+" - Score: "+score);
+                Console.WriteLine($"Checking Player: {player.name} - Score: {score}");
                 
                 if(dealerScore > 21 && score <= 21 || dealerScore < score && score <= 21){
-                    Console.WriteLine("Player "+playerName+" Winner");
+                    Console.WriteLine($"Player {player.name} Won!");
                 }else if(dealerScore == score && score <= 21){
-                    Console.WriteLine("Player "+playerName+" Push");
+                    Console.WriteLine($"Player {player.name} Push!");
                 }else if(dealerScore > score && score < 21){
-                    Console.WriteLine("Player "+playerName+" Lost");
+                    Console.WriteLine($"Player {player.name} Lost!");
                 }
             }
         }
